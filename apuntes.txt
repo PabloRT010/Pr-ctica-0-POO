@@ -85,3 +85,6 @@ int suma = f.dia += n;
     }
     f.dia = aux;
     return f;
+
+    - para usar db hay que compilar el programa con la opcion -g
+    

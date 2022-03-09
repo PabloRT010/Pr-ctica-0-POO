@@ -26,13 +26,12 @@ class Fecha{
     friend Fecha operator-(Fecha& f, int n);   //resta de días a una fecha
     friend Fecha operator+=(Fecha& f, int n);  //suma de dias a una fecha con asignación   
     friend Fecha operator-=(Fecha& f, int n);  //resta de dias a una fecha con asignación
-    operator const char*();
+    operator const char*();                    //funcion que imprime la fecha en un formato
     //observadores:
     unsigned d()const;
     unsigned m()const;
     unsigned a()const;
     //otras:
-    //const char* fecha_cadena(Fecha& f); //permite construir una cadena a partir de una fecha
     void probar_dia(unsigned dia, unsigned mes, unsigned anno);
     void probar_mes(unsigned);
     void probar_anno(unsigned);

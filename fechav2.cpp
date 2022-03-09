@@ -98,7 +98,9 @@ Fecha::Fecha(const char* cad){
 //operadores
 
 Fecha operator+=(Fecha& f, int n){
-    tm* nueva_fecha = localtime(&now);
+
+    std::time_t tiempo = std::time(nullptr);
+    tm* nueva_fecha = std::localtime(&tiempo);
     nueva_fecha->tm_mday = f.dia + n;
     nueva_fecha->tm_mon = f.mes + 1;
     nueva_fecha->tm_year = f.anno + 1900;

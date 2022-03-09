@@ -108,8 +108,8 @@ Fecha operator+=(Fecha& f, int n){
     std::time_t aux = std::time(nullptr);
     tm* nueva_fecha = std::localtime(&aux);
     nueva_fecha->tm_mday = f.dia + n;
-    nueva_fecha->tm_mon = f.mes + 1;
-    nueva_fecha->tm_year = f.anno + 1900;
+    nueva_fecha->tm_mon = f.mes - 1;
+    nueva_fecha->tm_year = f.anno - 1900;
 
     mktime(nueva_fecha); //esta funcion tiene en cuenta los años bisiestos y realiza todas las sumas/restas de meses y años necesarias según la suma de el día de la fecha y el numero
     f.dia = nueva_fecha->tm_mday;

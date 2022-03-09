@@ -2,6 +2,9 @@
 #include <iostream>
 using namespace std;
 
+time_t now = time(0);
+tm* dt = localtime(&now);
+
 Fecha::Fecha(unsigned d, unsigned m, unsigned a){
     try{
         probar_dia(d, m, a);
@@ -36,8 +39,9 @@ void Fecha::probar_dia(unsigned d, unsigned m, unsigned a){
         }
         dia = d;
     }
-    else
-    dia = now->tm_mday;
+    else{
+    dia = dt->tm_mday;
+    }
 }
 
 void Fecha::probar_mes(unsigned m){
@@ -53,8 +57,9 @@ void Fecha::probar_mes(unsigned m){
         }
         mes = m;
     }
-    else 
-        mes = now->tm_mon + 1;
+    else{ 
+        mes = dt->tm_mon + 1;
+    }
 }
 
 void Fecha:: probar_anno(unsigned a){
@@ -70,8 +75,9 @@ void Fecha:: probar_anno(unsigned a){
         }
         anno = a;
     }
-    else
-    anno = now->tm_year + 1900;
+    else{
+        anno = dt->tm_year + 1900;
+    }
 }
 
 Fecha::Fecha(const char* cad){
@@ -99,8 +105,8 @@ Fecha::Fecha(const char* cad){
 
 Fecha operator+=(Fecha& f, int n){
 
-    std::time_t tiempo = std::time(nullptr);
-    tm* nueva_fecha = std::localtime(&tiempo);
+    std::time_t aux = std::time(nullptr);
+    tm* nueva_fecha = std::localtime(&aux);
     nueva_fecha->tm_mday = f.dia + n;
     nueva_fecha->tm_mon = f.mes + 1;
     nueva_fecha->tm_year = f.anno + 1900;
@@ -182,10 +188,10 @@ unsigned Fecha::a() const{
     return anno;
 }
 
-Fecha::operator const char *(){
+ Fecha::operator const char *(){
 
     locale::global(locale("es_ES.UTF-8"));
-    tm* fecha_cadena = localtime(&t);
+    tm* fecha_cadena = localtime(&now);
     fecha_cadena->tm_mday = dia;
     fecha_cadena->tm_mon = mes - 1;
     fecha_cadena->tm_year = anno - 1900;
@@ -193,5 +199,5 @@ Fecha::operator const char *(){
     static char cadena[50];
     mktime(fecha_cadena);
     strftime(cadena, 50,"%A %d de %B de %Y", fecha_cadena); //referencias en cpp reference
-    
+    return cadena;
 }

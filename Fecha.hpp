@@ -5,16 +5,13 @@
 
 
 
-time_t t = time(0); //obtene hora actual
-tm* now = localtime(&t);
-
 class Fecha{
     public:
     //variables públicas:
     static const unsigned AnnoMinimo = 1902;
     static const unsigned AnnoMaximo = 2037;
     //constructores:
-    explicit Fecha(unsigned d = now->tm_mday, unsigned m = now->tm_mon + 1, unsigned a = now->tm_year + 1900); //constructor
+    explicit Fecha(unsigned d = 0, unsigned m = 0, unsigned a = 0); //constructor
     Fecha(const Fecha& f); //ctor copia
     Fecha(const char* cad);//constructor con cadena
     //operadores:

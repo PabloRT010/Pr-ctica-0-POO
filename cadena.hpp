@@ -1,6 +1,7 @@
 #ifndef CADENA_HPP
 #define CADENA_HPP
 #include<iostream>
+#include<cstring>
 #include<stdexcept>
 
 
@@ -16,19 +17,30 @@ class Cadena{
     //operadores
     Cadena& operator=(const Cadena& cad);
     friend Cadena operator+=(Cadena& a, const Cadena& b);
-    friend Cadena operator +(const Cadena& a, const Cadena& b); 
+    friend Cadena operator +(Cadena& a, const Cadena& b); 
     //observadores
     char* imprimir() const;
     unsigned length() const;
     char operator[](int n) const; // devuelve el caracter de la posicion
-    char at(int n) const; //comprueba si el numero esta en el rango de la cadena y si lo esta devuelve el caracter de la posicion
+    char at(int n); //comprueba si el numero esta en el rango de la cadena y si lo esta devuelve el caracter de la posicion
+    //otras
+    Cadena& substr(unsigned n, unsigned tam);
     //destructor
     ~Cadena();
 
     private:
     //atributos
     char* s_;
-    unsigned tam_; //no cuenta el caracter terminador /
+    unsigned tam_; //no cuenta el caracter terminador /0
+    class Invalida{
+        public:
+        Invalida(const char* cad);
+        const char* por_que();
+
+        private:
+        const char* error;
+    };
+
 };
 
  //comparadores (externos para que se pueda construir en base a una cadena)
@@ -38,29 +50,6 @@ class Cadena{
     bool operator >(const Cadena& a, const Cadena& b);
     bool operator <=(const Cadena& a, const Cadena& b);
     bool operator >=(const Cadena& a, const Cadena& b);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 #endif

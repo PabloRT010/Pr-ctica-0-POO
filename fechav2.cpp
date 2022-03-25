@@ -188,7 +188,7 @@ unsigned Fecha::a() const{
     return anno;
 }
 
- Fecha::operator const char *(){
+Fecha::operator const char *(){
 
     locale::global(locale("es_ES.UTF-8"));
     tm* fecha_cadena = localtime(&now);
